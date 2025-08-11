@@ -2,354 +2,46 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=360, initial-scale=1.0" />
-  <title>Quiz Harry Potter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz de Pokémon</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  
-  <div class="container">
-
-    
-<div id="cronometro" style="position:absolute; top:18px; right:18px; background:rgba(90, 3, 3, 0.7); color:#fff; font-size:28px; font-family:monospace; padding:8px 18px; border-radius:12px; z-index:10; display:none;">
-  40
-</div>
-    
-    
-    <div id="tela-capa" class="tela ativa" style="background-image: url('img/capa.jpeg');">
-      <button 
-        class="botao-transparente" 
-        style="top: 500px; left: 90px; width: 160px; height: 50px;" 
-        onclick="mudarTela('tela-faseUm')">
-      </button>
+  <div class="tela-celular">
+    <!-- Tela Inicial -->
+    <div id="tela-inicio" class="tela" style="background-image: url('IMG/capa.jpeg');">
+      <button id="botao-iniciar"></button>
     </div>
 
-    
-    <div id="tela-faseUm" class="tela" style="background-image: url('img/faseUm.jpeg');">
-      <button 
-        class="botao-transparente" 
-        style="top: 550px; left: 110px; width: 160px; height: 40px;" 
-        onclick="mudarTela('pergunta1')">
-      </button>
+    <!-- Tela de Pergunta -->
+    <div id="tela-pergunta" class="tela" style="display: none;">
+      <div id="flash-overlay"></div>
+      <button class="alternativa" id="resposta1" style="top: 380px;"></button>
+      <button class="alternativa" id="resposta2" style="top: 430px;"></button>
+      <button class="alternativa" id="resposta3" style="top: 480px;"></button>
+      <button class="alternativa" id="resposta4" style="top: 560px;"></button>
+      <div id="resultado" class="resultado"></div>
     </div>
 
-   
-
-<div id="pergunta1" class="tela" style="background-image: url('img/pergunta1.jpeg');">
-  <button class="botao-transparente" style="top: 430px; left: 50px; width: 270px; height: 38px;" onclick="responder('A')"></button>
-  <button class="botao-transparente" style="top: 490px; left: 50px; width: 270px; height: 38px;" onclick="responder('B')"></button>
-  <button class="botao-transparente" style="top: 570px; left: 30px; width: 270px; height: 38px;" onclick="responder('C')"></button>
-  <button class="botao-transparente" style="top: 600px; left: 50px; width: 270px; height: 38px;" onclick="responder('D')"></button>
+    <!-- Tela de Bloqueio -->
+    <div id="tela-bloqueio" class="tela" style="display:none; background-image: url('IMG/naopode.png'); background-size: 100% 100%; background-position: center;">
+    <button id="btn-voltar-inicio"></button>
+    </div>
+    <!-- Tela de Segunda Fase -->
+<div id="tela-fase2" class="tela" style="display:none; background-image: url('IMG/faseDois.jpeg'); background-size: 100% 100%; background-position: center;">
+  <button id="btn-iniciar-fase2"></button>
+</div>
+ <!-- Tela de Terceira Fase -->
+<div id="tela-fase3" class="tela" style="display:none; background-image: url('IMG/capaTres.jpeg'); background-size: 100% 100%; background-position: center;">
+  <button id="btn-iniciar-fase3"></button>
+</div>
+<!-- Tela Final -->
+<div id="tela-final" class="tela" style="display:none; background-image: url('IMG/final.png'); background-size: 100% 100%; background-position: center;">
+  <button id="btn-voltar-inicio-final"></button>
 </div>
 
 
-
-<!-- Pergunta 2 -->
-<div id="pergunta2" class="tela" style="background-image: url('img/pergunta2.jpeg');">
-  <button class="botao-transparente" style="top: 430px; left: 40px; width: 280px; height: 40px;" onclick="responder('A')"></button>
-  <button class="botao-transparente" style="top: 490px; left: 40px; width: 280px; height: 40px;" onclick="responder('B')"></button>
-  <button class="botao-transparente" style="top: 570px; left: 40px; width: 280px; height: 40px;" onclick="responder('C')"></button>
-  <button class="botao-transparente" style="top: 600px; left: 40px; width: 280px; height: 40px;" onclick="responder('D')"></button>
-</div>
-
-<!-- Pergunta 3 -->
-<div id="pergunta3" class="tela" style="background-image: url('img/pergunta3.jpeg');">
-  <button class="botao-transparente" style="top: 430px; left: 40px; width: 280px; height: 40px;" onclick="responder('A')"></button>
-  <button class="botao-transparente" style="top: 490px; left: 40px; width: 280px; height: 40px;" onclick="responder('B')"></button>
-  <button class="botao-transparente" style="top: 570px; left: 40px; width: 280px; height: 40px;" onclick="responder('C')"></button>
-  <button class="botao-transparente" style="top: 600px; left: 40px; width: 280px; height: 40px;" onclick="responder('D')"></button>
-</div>
-
-<!-- Pergunta 4 -->
-<div id="pergunta4" class="tela" style="background-image: url('img/pergunta4.jpeg');">
-  <button class="botao-transparente" style="top: 430px; left: 40px; width: 280px; height: 40px;" onclick="responder('A')"></button>
-  <button class="botao-transparente" style="top: 490px; left: 40px; width: 280px; height: 40px;" onclick="responder('B')"></button>
-  <button class="botao-transparente" style="top: 570px; left: 40px; width: 280px; height: 40px;" onclick="responder('C')"></button>
-  <button class="botao-transparente" style="top: 600px; left: 40px; width: 280px; height: 40px;" onclick="responder('D')"></button>
-</div>
-
-<!-- Pergunta 5 -->
-<div id="pergunta5" class="tela" style="background-image: url('img/pergunta5.jpeg');">
-  <button class="botao-transparente" style="top: 430px; left: 40px; width: 280px; height: 40px;" onclick="responder('A')"></button>
-  <button class="botao-transparente" style="top: 490px; left: 40px; width: 280px; height: 40px;" onclick="responder('B')"></button>
-  <button class="botao-transparente" style="top: 570px; left: 40px; width: 280px; height: 40px;" onclick="responder('C')"></button>
-  <button class="botao-transparente" style="top: 600px; left: 40px; width: 280px; height: 40px;" onclick="responder('D')"></button>
-</div>
-
-<!-- Pergunta 6 -->
-<div id="pergunta6" class="tela" style="background-image: url('img/pergunta6.jpeg');">
-  <button class="botao-transparente" style="top: 430px; left: 40px; width: 280px; height: 40px;" onclick="responder('A')"></button>
-  <button class="botao-transparente" style="top: 490px; left: 40px; width: 280px; height: 40px;" onclick="responder('B')"></button>
-  <button class="botao-transparente" style="top: 570px; left: 40px; width: 280px; height: 40px;" onclick="responder('C')"></button>
-  <button class="botao-transparente" style="top: 600px; left: 40px; width: 280px; height: 40px;" onclick="responder('D')"></button>
-</div>
-
-<!-- Pergunta 7 -->
-<div id="pergunta7" class="tela" style="background-image: url('img/pergunta7.jpeg');">
-  <button class="botao-transparente" style="top: 430px; left: 40px; width: 280px; height: 40px;" onclick="responder('A')"></button>
-  <button class="botao-transparente" style="top: 490px; left: 40px; width: 280px; height: 40px;" onclick="responder('B')"></button>
-  <button class="botao-transparente" style="top: 570px; left: 40px; width: 280px; height: 40px;" onclick="responder('C')"></button>
-  <button class="botao-transparente" style="top: 600px; left: 40px; width: 280px; height: 40px;" onclick="responder('D')"></button>
-</div>
-
-<!-- Pergunta 8 -->
-<div id="pergunta8" class="tela" style="background-image: url('img/pergunta8.jpeg');">
-  <button class="botao-transparente" style="top: 430px; left: 40px; width: 280px; height: 40px;" onclick="responder('A')"></button>
-  <button class="botao-transparente" style="top: 490px; left: 40px; width: 280px; height: 40px;" onclick="responder('B')"></button>
-  <button class="botao-transparente" style="top: 570px; left: 40px; width: 280px; height: 40px;" onclick="responder('C')"></button>
-  <button class="botao-transparente" style="top: 600px; left: 40px; width: 280px; height: 40px;" onclick="responder('D')"></button>
-</div>
-
-<!-- Pergunta 9 -->
-<div id="pergunta9" class="tela" style="background-image: url('img/pergunta9.jpeg');">
-  <button class="botao-transparente" style="top: 430px; left: 40px; width: 280px; height: 40px;" onclick="responder('A')"></button>
-  <button class="botao-transparente" style="top: 490px; left: 40px; width: 280px; height: 40px;" onclick="responder('B')"></button>
-  <button class="botao-transparente" style="top: 570px; left: 40px; width: 280px; height: 40px;" onclick="responder('C')"></button>
-  <button class="botao-transparente" style="top: 600px; left: 40px; width: 280px; height: 40px;" onclick="responder('D')"></button>
-</div>
-
-<!-- Pergunta 10 -->
-<div id="pergunta10" class="tela" style="background-image: url('img/pergunta10.jpeg');">
-  <button class="botao-transparente" style="top: 430px; left: 40px; width: 280px; height: 40px;" onclick="responder('A')"></button>
-  <button class="botao-transparente" style="top: 490px; left: 40px; width: 280px; height: 40px;" onclick="responder('B')"></button>
-  <button class="botao-transparente" style="top: 570px; left: 40px; width: 280px; height: 40px;" onclick="responder('C')"></button>
-  <button class="botao-transparente" style="top: 600px; left: 40px; width: 280px; height: 40px;" onclick="responder('D')"></button>
-</div>
-
-
-<!-- ...existing code... -->
-<div id="tela-resultado" class="tela" style="
-  background: linear-gradient(135deg, #5a0b0b 60%, #2b0000 100%);
-  color: #ffdcdc;
-  text-align: center;
-  padding: 40px 20px 30px 20px;
-  font-size: 22px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-  height: 100%;
-  box-sizing: border-box;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 24px;
-  box-shadow: 0 8px 32px rgba(90,11,11,0.5), 0 2px 8px rgba(0,0,0,0.3);
-  border: 2px solid #ffdcdc;
-  animation: resultadoFadeIn 0.7s;
-">
-  <p style="
-    margin: 0 0 18px 0;
-    font-weight: 600;
-    font-size: 22px;
-    color: #f8a5a5;
-    text-shadow: 0 0 8px rgba(255, 100, 100, 0.7);
-    letter-spacing: 1px;
-  ">
-    Você deve acertar <span style="color:#ffdcdc; font-weight:bold;">5 ou mais</span> para avançar
-  </p>
-  <p id="resultado-texto" style="
-    margin: 0 0 24px 0;
-    font-weight: 700;
-    font-size: 32px;
-    letter-spacing: 1.5px;
-    color: #fff;
-    text-shadow: 0 0 12px #d94c4c, 0 0 4px #fff;
-    background: rgba(90,11,11,0.3);
-    border-radius: 12px;
-    padding: 12px 0;
-    box-shadow: 0 2px 12px rgba(255,150,150,0.2);
-    transition: background 0.3s;
-  ">
-    Você acertou X de 10 perguntas!
-  </p>
-
-  <button 
-    id="btn-avancar"
-    style="display:none;
-      margin-top: 10px;
-      padding: 16px 36px;
-      font-size: 22px;
-      cursor: pointer;
-      background: linear-gradient(90deg, #d94c4c 60%, #a53030 100%);
-      color: #fff;
-      border: none;
-      border-radius: 16px;
-      box-shadow: 0 4px 16px rgba(217, 76, 76, 0.6);
-      font-weight: 700;
-      letter-spacing: 1px;
-      transition: background 0.3s, box-shadow 0.3s;"
-    onmouseover="this.style.background='linear-gradient(90deg,#a53030 60%,#d94c4c 100%)'; this.style.boxShadow='0 6px 24px rgba(165, 48, 48, 0.8)';" 
-    onmouseout="this.style.background='linear-gradient(90deg,#d94c4c 60%,#a53030 100%)'; this.style.boxShadow='0 4px 16px rgba(217, 76, 76, 0.6)';" 
-    onclick="avancarFase2()"
-  >Avançar para a Fase 2</button>
-
-  <button 
-    id="btn-tentar"
-    style="display:none;
-      margin-top: 10px;
-      padding: 16px 36px;
-      font-size: 22px;
-      cursor: pointer;
-      background: linear-gradient(90deg, #a53030 60%, #d94c4c 100%);
-      color: #fff;
-      border: none;
-      border-radius: 16px;
-      box-shadow: 0 4px 16px rgba(217, 76, 76, 0.6);
-      font-weight: 700;
-      letter-spacing: 1px;
-      transition: background 0.3s, box-shadow 0.3s;"
-    onclick="tentarNovamente()"
-  >Tente novamente</button>
-<style>
-@keyframes resultadoFadeIn {
-  from { opacity: 0; transform: scale(0.95);}
-  to { opacity: 1; transform: scale(1);}
-}
-</style>
-</div>
-
-
-
-
-
-<div id="tela-faseDois" class="tela" style="background-image: url('img/faseDois.jpeg');">
-  <button 
-    class="botao-transparente" 
-    style="top: 500px; left: 90px; width: 160px; height: 50px;" 
-    onclick="mudarTela('fase2pergunta1')">
-  </button>
-</div>
-
-<div id="fase2pergunta1" class="tela" style="background-image: url('img/fase2pergunta1.jpeg');">
-  <button class="botao-transparente" style="top: 430px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('A')"></button>
-  <button class="botao-transparente" style="top: 490px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('B')"></button>
-  <button class="botao-transparente" style="top: 570px; left: 30px; width: 270px; height: 38px;" onclick="responderFase2('C')"></button>
-  <button class="botao-transparente" style="top: 600px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('D')"></button>
-</div>
-
-<div id="fase2pergunta2" class="tela" style="background-image: url('img/fase2pergunta2.jpeg');">
-  <button class="botao-transparente" style="top: 430px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('A')"></button>
-  <button class="botao-transparente" style="top: 490px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('B')"></button>
-  <button class="botao-transparente" style="top: 570px; left: 30px; width: 270px; height: 38px;" onclick="responderFase2('C')"></button>
-  <button class="botao-transparente" style="top: 600px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('D')"></button>
-</div>
-
-<div id="fase2pergunta3" class="tela" style="background-image: url('img/fase2pergunta3.jpeg');">
-  <button class="botao-transparente" style="top: 430px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('A')"></button>
-  <button class="botao-transparente" style="top: 490px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('B')"></button>
-  <button class="botao-transparente" style="top: 570px; left: 30px; width: 270px; height: 38px;" onclick="responderFase2('C')"></button>
-  <button class="botao-transparente" style="top: 600px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('D')"></button>
-</div>
-
-<div id="fase2pergunta4" class="tela" style="background-image: url('img/fase2pergunta4.jpeg');">
-  <button class="botao-transparente" style="top: 430px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('A')"></button>
-  <button class="botao-transparente" style="top: 490px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('B')"></button>
-  <button class="botao-transparente" style="top: 570px; left: 30px; width: 270px; height: 38px;" onclick="responderFase2('C')"></button>
-  <button class="botao-transparente" style="top: 600px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('D')"></button>
-</div>
-
-<div id="fase2pergunta5" class="tela" style="background-image: url('img/fase2pergunta5.jpeg');">
-  <button class="botao-transparente" style="top: 430px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('A')"></button>
-  <button class="botao-transparente" style="top: 490px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('B')"></button>
-  <button class="botao-transparente" style="top: 570px; left: 30px; width: 270px; height: 38px;" onclick="responderFase2('C')"></button>
-  <button class="botao-transparente" style="top: 600px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('D')"></button>
-</div>
-
-<div id="fase2pergunta6" class="tela" style="background-image: url('img/fase2pergunta6.jpeg');">
-  <button class="botao-transparente" style="top: 430px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('A')"></button>
-  <button class="botao-transparente" style="top: 490px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('B')"></button>
-  <button class="botao-transparente" style="top: 570px; left: 30px; width: 270px; height: 38px;" onclick="responderFase2('C')"></button>
-  <button class="botao-transparente" style="top: 600px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('D')"></button>
-</div>
-
-<div id="fase2pergunta7" class="tela" style="background-image: url('img/fase2pergunta7.jpeg');">
-  <button class="botao-transparente" style="top: 430px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('A')"></button>
-  <button class="botao-transparente" style="top: 490px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('B')"></button>
-  <button class="botao-transparente" style="top: 570px; left: 30px; width: 270px; height: 38px;" onclick="responderFase2('C')"></button>
-  <button class="botao-transparente" style="top: 600px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('D')"></button>
-</div>
-
-<div id="fase2pergunta8" class="tela" style="background-image: url('img/fase2pergunta8.jpeg');">
-  <button class="botao-transparente" style="top: 430px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('A')"></button>
-  <button class="botao-transparente" style="top: 490px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('B')"></button>
-  <button class="botao-transparente" style="top: 570px; left: 30px; width: 270px; height: 38px;" onclick="responderFase2('C')"></button>
-  <button class="botao-transparente" style="top: 600px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('D')"></button>
-</div>
-
-<div id="fase2pergunta9" class="tela" style="background-image: url('img/fase2pergunta9.jpeg');">
-  <button class="botao-transparente" style="top: 430px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('A')"></button>
-  <button class="botao-transparente" style="top: 490px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('B')"></button>
-  <button class="botao-transparente" style="top: 570px; left: 30px; width: 270px; height: 38px;" onclick="responderFase2('C')"></button>
-  <button class="botao-transparente" style="top: 600px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('D')"></button>
-</div>
-
-<div id="fase2pergunta10" class="tela" style="background-image: url('img/fase2pergunta10.jpeg');">
-  <button class="botao-transparente" style="top: 430px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('A')"></button>
-  <button class="botao-transparente" style="top: 490px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('B')"></button>
-  <button class="botao-transparente" style="top: 570px; left: 30px; width: 270px; height: 38px;" onclick="responderFase2('C')"></button>
-  <button class="botao-transparente" style="top: 600px; left: 50px; width: 270px; height: 38px;" onclick="responderFase2('D')"></button>
-</div>
-
-<div id="tela-resultado-fase2" class="tela" style="
-  background: linear-gradient(135deg, #5a0b0b 60%, #2b0000 100%);
-  color: #ffdcdc;
-  text-align: center;
-  padding: 40px 20px 30px 20px;
-  font-size: 22px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-  height: 100%;
-  box-sizing: border-box;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 24px;
-  box-shadow: 0 8px 32px rgba(90,11,11,0.5), 0 2px 8px rgba(0,0,0,0.3);
-  border: 2px solid #ffdcdc;
-  animation: resultadoFadeIn 0.7s;
-">
-  <p style="
-    margin: 0 0 18px 0;
-    font-weight: 600;
-    font-size: 22px;
-    color: #f8a5a5;
-    text-shadow: 0 0 8px rgba(255, 100, 100, 0.7);
-    letter-spacing: 1px;
-  ">
-    Você deve acertar <span style="color:#ffdcdc; font-weight:bold;">5 ou mais</span> para vencer!
-  </p>
-  <p id="resultado-texto-fase2" style="
-    margin: 0 0 24px 0;
-    font-weight: 700;
-    font-size: 32px;
-    letter-spacing: 1.5px;
-    color: #fff;
-    text-shadow: 0 0 12px #d94c4c, 0 0 4px #fff;
-    background: rgba(90,11,11,0.3);
-    border-radius: 12px;
-    padding: 12px 0;
-    box-shadow: 0 2px 12px rgba(255,150,150,0.2);
-    transition: background 0.3s;
-  ">
-    Você acertou X de 10 perguntas!
-  </p>
-  <button id="btn-tentar-fase2" style="display:none;
-    margin-top: 10px;
-    padding: 16px 36px;
-    font-size: 22px;
-    cursor: pointer;
-    background: linear-gradient(90deg, #a53030 60%, #d94c4c 100%);
-    color: #fff;
-    border: none;
-    border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(217, 76, 76, 0.6);
-    font-weight: 700;
-    letter-spacing: 1px;
-    transition: background 0.3s, box-shadow 0.3s;"
-    onclick="tentarNovamenteFase2()"
-  >Tente novamente</button>
-
-
-  <script src="script.js"></script>
+  </div>
+  <script src="quiz.js"></script>
 </body>
 </html>
