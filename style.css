@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-color: #2a0303;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.container {
+  position: relative;
+  width: 320px;
+  height: 660px;
+  overflow: hidden;
+  z-index: 1;
+  border-radius: 12px;
+
+
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), 
+              0 0 40px rgba(255, 255, 255, 0.2);
+}
+
+
+
+.tela {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: none;
+}
+
+.tela.ativa {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.botao-transparente {
+  position: absolute;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+
+
